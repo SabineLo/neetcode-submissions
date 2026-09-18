@@ -1,0 +1,26 @@
+class Solution:
+
+    def encode(self, strs: List[str]) -> str:
+        result = []
+        for s in strs:
+            result.append(str(len(s)))
+            result.append('#')
+            result.append(s)
+        return "".join(result)
+
+    def decode(self, s: str) -> List[str]:
+        result = []
+        i = 0
+
+        while i < len(s):
+            j = i
+            while s[j] != '#': #find the next position with #
+                j += 1
+            length = int(s[i:j])
+            i = j + 1 #gets the first letter 
+            j = i + length #gets to the next number 
+            result.append(s[i:j])
+            i = j #new start
+        return result
+
+
